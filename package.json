@@ -1,0 +1,32 @@
+{
+  "name": "chai-aur-backend",
+  "version": "1.0.0",
+  "main": "first.js",
+  "scripts": {
+    "start": "nodemon first.js"
+  },
+  "keywords": [
+    "javascriot",
+    "backend",
+    "chai"
+  ],
+  "author": "ayush",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.3",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.6.1",
+    "socket.io": "^4.7.5"
+  }
+}

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/socket.io/socket.io.js"></script>
+    <title>Chat App</title>
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #e5ddd5; /* Light background color */
+        }
+
+        /* Chat Room Container */
+        #chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Chat Header */
+        .chat-header {
+            background: #128C7E; /* WhatsApp Green */
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            position: relative; /* To position the logout button */
+        }
+
+        /* Logout Button */
+        #logout-button {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background-color: #ff3b30;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        /* Login and Registration Container */
+        #login-container, #registration-container {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #e5ddd5; /* Light background color */
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        /* Chat Messages List */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            overflow-y: auto;
+            flex: 1;
+            padding: 10px;
+            display: none; /* Hide initially */
+        }
+
+        li {
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            max-width: 80%;
+            clear: both;
+        }
+
+        /* Sent Message */
+        .sent {
+            background-color: #DCF8C6; /* Light green */
+            align-self: flex-end;
+            text-align: right;
+        }
+
+        /* Received Message */
+        .received {
+            background-color: #FFF;
+            align-self: flex-start;
+            text-align: left;
+        }
+
+        /* Chat Input Section */
+        .chat-input {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            background: #fff;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        input[type="text"], input[type="password"] {
+            padding: 10px;
+            margin: 5px 10px 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            background-color: #128C7E; /* WhatsApp Green */
+            color: white;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        button:hover {
+            background-color: #075E54;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            #chat-container {
+                width: 90%; /* Make container width responsive */
+                margin: 0 auto;
+            }
+
+            .chat-header {
+                font-size: 1.5em;
+            }
+
+            input[type="text"], input[type="password"], button {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .chat-header {
+                font-size: 1.2em;
+            }
+
+            input[type="text"], input[type="password"], button {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div class="chat-header">
+            zipeee
+            <button id="logout-button">Logout</button>
+        </div>
+
+        <!-- Login Container -->
+        <div id="login-container">
+            <h3>Login</h3>
+            <input id="username-input" type="text" placeholder="Username" required>
+            <input id="password-input" type="password" placeholder="Password" required>
+            <button id="login-button">Login</button>
+        </div>
+
+        <!-- Registration Container -->
+        <div id="registration-container" style="display:none;">
+            <h3>Register</h3>
+            <input id="registration-username-input" type="text" placeholder="Username" required>
+            <input id="registration-password-input" type="password" placeholder="Password" required>
+            <button id="register-button">Register</button>
+        </div>
+
+        <!-- Messages List -->
+        <ul id="messages-list">
+            <!-- Messages will be dynamically inserted here -->
+        </ul>
+
+        <!-- Chat Input Section -->
+        <div class="chat-input" style="display:none;">
+            <input id="user-input" type="text" placeholder="Your name" required>
+            <input id="message-input" type="text" placeholder="Type a message..." required>
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <script src="chat.js"></script>
+</body>
+</html>
